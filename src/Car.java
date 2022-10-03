@@ -12,7 +12,7 @@ public class Car {
     //It adds the given amount of fuel to the tank of the car
     void refuel(FuelTank tank) {
         if(tank.type.name.equals(fuelType.name))
-            fuel = fuel + tank.amount;
+            this.fuel = this.fuel + tank.amount;
         else {
             System.err.println("I cannot use "+tank.type.name+" with a car with "+fuelType.name);
         }
