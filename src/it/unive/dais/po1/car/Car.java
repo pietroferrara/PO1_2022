@@ -1,3 +1,5 @@
+package it.unive.dais.po1.car;
+
 public class Car {
 
     FuelType fuelType;

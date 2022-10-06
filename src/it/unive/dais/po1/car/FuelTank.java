@@ -1,3 +1,5 @@
+package it.unive.dais.po1.car;
+
 public class FuelTank {
     double amount;
     FuelType type;
@@ -6,10 +8,12 @@ public class FuelTank {
 
     static int numberOfTanks;
 
+    static final int MAX_NUMBER_OF_TANKS = 1000;
+
     FuelTank(double amount, FuelType type) {
         this.amount = amount;
         this.type = type;
-        if(FuelTank.numberOfTanks > 0)
+        if(FuelTank.numberOfTanks > 0 && FuelTank.numberOfTanks < FuelTank.MAX_NUMBER_OF_TANKS)
             this.tankId = FuelTank.numberOfTanks;
         else this.tankId = -1;
         FuelTank.numberOfTanks = FuelTank.numberOfTanks + 1;
