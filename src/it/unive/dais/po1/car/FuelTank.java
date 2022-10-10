@@ -1,16 +1,15 @@
 package it.unive.dais.po1.car;
 
 public class FuelTank {
-    double amount;
-    FuelType type;
+    private double amount;
+    private final FuelType type;
+    private final int tankId;
 
-    final int tankId;
-
-    static int numberOfTanks;
+    private static int numberOfTanks;
 
     static final int MAX_NUMBER_OF_TANKS = 1000;
 
-    FuelTank(double amount, FuelType type) {
+    public FuelTank(double amount, FuelType type) {
         this.amount = amount;
         this.type = type;
         if(FuelTank.numberOfTanks > 0 && FuelTank.numberOfTanks < FuelTank.MAX_NUMBER_OF_TANKS)
@@ -23,11 +22,19 @@ public class FuelTank {
         FuelTank.resetTankCounter();
     }
 
-    void refuelCar(Car c) {
+    public void refuelCar(Car c) {
         c.refuel(this);
     }
 
-    static void resetTankCounter() {
+    private static void resetTankCounter() {
         FuelTank.numberOfTanks = 0;
+    }
+
+    public String getFuelName() {
+        return this.type.getFuelName();
+    }
+
+    public double getAmount() {
+        return this.amount;
     }
 }
