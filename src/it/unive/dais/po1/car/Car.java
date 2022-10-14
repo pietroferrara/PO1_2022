@@ -1,7 +1,15 @@
 package it.unive.dais.po1.car;
 
+/**
+ * This class is an abstract of a car that can accelerate, brake, and refuel.
+ *
+ * @author Pietro Ferrara
+ */
 public class Car {
 
+    /**
+     * It represents the fuel type of the car
+     */
     public FuelType fuelType;
     private double fuel;
     private double speed;
@@ -11,6 +19,11 @@ public class Car {
         speed = 0;
     }
 
+    /**
+     * It returns the current speed of the car
+     *
+     * @return the current speed of the car
+     */
     public double getSpeed() {
         return this.speed;
     }
@@ -19,7 +32,11 @@ public class Car {
         return this.fuel;
     }
 
-    //It adds the given amount of fuel to the tank of the car
+    /**
+     *
+     It adds the given amount of fuel to the tank of the car
+     {@link FuelTank}
+     */
     public void refuel(FuelTank tank) {
         if(tank.getFuelName().equals(fuelType.getFuelName()))
             this.fuel = this.fuel + tank.getAmount();
@@ -28,10 +45,13 @@ public class Car {
         }
     }
 
-    //It accelerates the car with the given speed
-    //It consumes the fuel that is required to speed up the car
-    //If amount is negative, it does nothing
-    //If the fuel is not enough, it accelerates as much as possible
+    /**
+     *
+     It accelerates the car with the given speed
+     It consumes the fuel that is required to speed up the car
+     If amount is negative, it does nothing
+     If the fuel is not enough, it accelerates as much as possible
+     */
     public void accelerate(double amount) {
         if(amount < 0)
             return;
@@ -47,12 +67,23 @@ public class Car {
         }
     }
 
+    /**
+     * The given car crashes against the current car.
+     * The result is that car {@literal c} stops, while the current car gets the speed of the other car
+     * @param c the car that is crashing against the current one
+     */
     public void crash(Car c) {
         this.speed = this.speed + c.speed;
         c.speed = 0;
     }
 
 
+    /**
+     * It sets the speed of the car to the current value.
+     * If the given value is negative, it does nothing.
+     * If it increases the speed, it dispatches the call to accelerate.
+     * @param value
+     */
     public void setSpeed(double value) {
         if(value < 0)
             this.speed =0;

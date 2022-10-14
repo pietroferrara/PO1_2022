@@ -1,11 +1,11 @@
-import it.unive.dais.po1.car.Car;
-import it.unive.dais.po1.car.FuelTank;
-import it.unive.dais.po1.car.FuelType;
-import it.unive.dais.po1.wrappers.IntWrapper;
+import it.unive.dais.po1.car.*;
+
+import java.util.Arrays;
 
 public class Runner {
 
     public static void main(String[] args) {
+        System.out.println("Hello world");
 
 
         Car myCar;
@@ -16,6 +16,9 @@ public class Runner {
         myCar.refuel(tank);
         //dieselTank.refuelCar(myCar);
         myCar.accelerate(100);
+        myCar.crash(myCar);
         myCar.brake();
+        myCar.getSpeed();
+        FuelType f = myCar.fuelType;
     }
 }
