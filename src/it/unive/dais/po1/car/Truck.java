@@ -1,14 +1,5 @@
 package it.unive.dais.po1.car;
-
-/**
- * This class is an abstract of a car that can accelerate, brake, and refuel.
- *
- * @invariant this.getSpeed()>=0
- * @invariant this.getAmountOfFuel()>=0
- *
- * @author Pietro Ferrara
- */
-public class Car {
+public class Truck {
 
     /**
      * It represents the fuel type of the car
@@ -22,6 +13,19 @@ public class Car {
      * @invariant this.speed >= 0
      */
     private double speed;
+
+    private double load;
+
+    public void chargeLoad(double amount) {
+        if(amount >= 0)
+            this.load = this.load + amount;
+    }
+
+    public double unload() {
+        double totalLoad = this.load;
+        this.load=0;
+        return totalLoad;
+    }
 
     //It fully brakes the car
     public void brake() {
@@ -79,22 +83,22 @@ public class Car {
      If the fuel is not enough, it accelerates as much as possible
 
      @param amount the number of km/h we want to accelerate.
-                It must be a value greater than or equal to zero.
+     It must be a value greater than or equal to zero.
      @precondition/@requires amount >= 0
 
      TOO LONG VERSION
      @postcondition/@ensures amount*this.getFuelConsumption() <= prev(this.getAmountOfFuel()) =>
-            this.getSpeed() = prev(this.getSpeed()) + amount
-            AND this.getAmountOfFuel() = prev(this.getAmountOfFuel()) - amount*this.getFuelConsumption()
+     this.getSpeed() = prev(this.getSpeed()) + amount
+     AND this.getAmountOfFuel() = prev(this.getAmountOfFuel()) - amount*this.getFuelConsumption()
      @postcondition/@ensures amount*this.getFuelConsumption() > prev(this.getAmountOfFuel()) =>
-            this.getSpeed() = prev(this.getSpeed()) + prev(this.getAmountOfFuel())/this.getFuelConsumption()
-            AND this.getAmountOfFuel() = 0
+     this.getSpeed() = prev(this.getSpeed()) + prev(this.getAmountOfFuel())/this.getFuelConsumption()
+     AND this.getAmountOfFuel() = 0
 
      RIGHT LEVEL OF ABSTRACTION
 
      @postcondition/@ensures
-        this.getSpeed() >= prev(this.getSpeed())
-        AND this.getAmountOfFuel() <= prev(this.getAmountOfFuel())
+     this.getSpeed() >= prev(this.getSpeed())
+     AND this.getAmountOfFuel() <= prev(this.getAmountOfFuel())
      */
     public void accelerate(double amount) {
         if(amount < 0)
@@ -116,7 +120,7 @@ public class Car {
      * The result is that car {@literal c} stops, while the current car gets the speed of the other car
      * @param c the car that is crashing against the current one
      */
-    public void crash(Car c) {
+    public void crash(Truck c) {
         this.speed = this.speed + c.speed;
         c.speed = 0;
     }

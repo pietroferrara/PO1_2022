@@ -15,7 +15,7 @@ public class Runner {
         FuelTank tank = new FuelTank(10, diesel);
         myCar.refuel(tank);
         //dieselTank.refuelCar(myCar);
-        myCar.accelerate(100);
+        myCar.accelerate(-100);
         myCar.crash(myCar);
         myCar.brake();
         myCar.getSpeed();
