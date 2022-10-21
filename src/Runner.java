@@ -1,24 +1,18 @@
-import it.unive.dais.po1.car.*;
-
-import java.util.Arrays;
+import it.unive.dais.po1.quadrilateral.Rectangle;
+import it.unive.dais.po1.quadrilateral.Rhombus;
+import it.unive.dais.po1.quadrilateral.Square;
+import it.unive.dais.po1.vehicle.bicycle.Bicycle;
+import it.unive.dais.po1.vehicle.car.*;
 
 public class Runner {
 
     public static void main(String[] args) {
-        System.out.println("Hello world");
+        Bicycle b = new Bicycle();
+        b.accelerate(10);
+        System.out.println("The speed is "+b.getSpeed());
+        double frontpressure = b.frontTirePressure();
 
-
-        Car myCar;
-        FuelType diesel = new FuelType("diesel", 0.015, 1.7);
-        myCar = new Car();
-        myCar.fuelType = diesel;
-        FuelTank tank = new FuelTank(10, diesel);
-        myCar.refuel(tank);
-        //dieselTank.refuelCar(myCar);
-        myCar.accelerate(-100);
-        myCar.crash(myCar);
-        myCar.brake();
-        myCar.getSpeed();
-        FuelType f = myCar.fuelType;
+        Square s = new Square(2);
+        System.out.println("The area is "+s.getArea());
     }
 }

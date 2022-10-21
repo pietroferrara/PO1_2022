@@ -1,5 +1,5 @@
-package it.unive.dais.po1.car;
-public class Truck {
+package it.unive.dais.po1.vehicle.car;
+public class Truck extends Car {
 
     /**
      * It represents the fuel type of the car

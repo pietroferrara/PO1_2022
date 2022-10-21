@@ -1,4 +1,6 @@
-package it.unive.dais.po1.car;
+package it.unive.dais.po1.vehicle.car;
+
+import it.unive.dais.po1.vehicle.Vehicle;
 
 /**
  * This class is an abstract of a car that can accelerate, brake, and refuel.
@@ -8,7 +10,7 @@ package it.unive.dais.po1.car;
  *
  * @author Pietro Ferrara
  */
-public class Car {
+public class Car extends Vehicle {
 
     /**
      * It represents the fuel type of the car
@@ -121,18 +123,4 @@ public class Car {
         c.speed = 0;
     }
 
-
-    /**
-     * It sets the speed of the car to the current value.
-     * If the given value is negative, it does nothing.
-     * If it increases the speed, it dispatches the call to accelerate.
-     * @param value
-     */
-    public void setSpeed(double value) {
-        if(value < 0)
-            this.speed =0;
-        else if(value <= this.speed)
-            this.speed = value;
-        else this.accelerate(value - this.speed);
-    }
 }

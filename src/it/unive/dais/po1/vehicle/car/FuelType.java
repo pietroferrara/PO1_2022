@@ -1,4 +1,4 @@
-package it.unive.dais.po1.car;
+package it.unive.dais.po1.vehicle.car;
 
 public class FuelType {
     final double FUEL_CONSUMPTION;
