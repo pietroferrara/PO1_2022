@@ -12,33 +12,28 @@ import it.unive.dais.po1.vehicle.Vehicle;
  */
 public class Car extends Vehicle {
 
+
     /**
      * It represents the fuel type of the car
      */
-    public FuelType fuelType;
+    private FuelType fuelType;
     /**
      * @invariant this.fuel >= 0
      */
     private double fuel;
-    /**
-     * @invariant this.speed >= 0
-     */
-    private double speed;
 
-    //It fully brakes the car
-    public void brake() {
-        speed = 0;
+
+    public Car(double initialSpeed, FuelType ft, double amountOfFuel) {
+        super(initialSpeed);
+        this.fuelType = ft;
+        this.fuel = amountOfFuel;
     }
 
-    /**
-     * It returns the current speed of the car
-     *
-     * @return the current speed of the
-     * @postcondition return >= 0
-     */
-    public double getSpeed() {
-        return this.speed;
+    public Car(double initialSpeed, FuelType ft) {
+        this(initialSpeed, ft, 0.0);
     }
+
+
 
 
     /**
@@ -98,7 +93,7 @@ public class Car extends Vehicle {
         this.getSpeed() >= prev(this.getSpeed())
         AND this.getAmountOfFuel() <= prev(this.getAmountOfFuel())
      */
-    public void accelerate(double amount) {
+    final public void accelerate(double amount) {
         if(amount < 0)
             throw new AssertionError("amount must be greater than or equal to zero");
         double consumption = amount*fuelType.FUEL_CONSUMPTION;
@@ -121,6 +116,15 @@ public class Car extends Vehicle {
     public void crash(Car c) {
         this.speed = this.speed + c.speed;
         c.speed = 0;
+    }
+
+    public boolean isFuelEmpty() {
+        if(fuel>0)
+            return false;
+        else {
+            this.speed = this.speed * 0.9;
+            return true;
+        }
     }
 
 }
