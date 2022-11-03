@@ -98,13 +98,13 @@ public class Car extends Vehicle {
             throw new AssertionError("amount must be greater than or equal to zero");
         double consumption = amount*fuelType.FUEL_CONSUMPTION;
         if(consumption <= this.fuel) {
-            speed = speed + amount;
+            super.accelerate(amount);
             fuel = fuel - consumption * fuelType.FUEL_CONSUMPTION;
         }
         else {
             consumption = this.fuel;
             this.fuel = 0;
-            speed = speed + consumption/fuelType.FUEL_CONSUMPTION;
+            super.accelerate(consumption/fuelType.FUEL_CONSUMPTION);
         }
     }
 
@@ -114,15 +114,16 @@ public class Car extends Vehicle {
      * @param c the car that is crashing against the current one
      */
     public void crash(Car c) {
-        this.speed = this.speed + c.speed;
-        c.speed = 0;
+        super.accelerate(c.getSpeed());
+        c.brake();
     }
 
     public boolean isFuelEmpty() {
         if(fuel>0)
             return false;
         else {
-            this.speed = this.speed * 0.9;
+            super.accelerate(-this.getSpeed() * 0.1);
+            super.slowdown(this.getSpeed()*0.1);
             return true;
         }
     }

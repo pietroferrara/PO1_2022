@@ -1,5 +1,5 @@
 package it.unive.dais.po1.vehicle.car;
-public class Truck extends Car {
+final public class Truck extends Car {
 
     private double load;
 
@@ -25,9 +25,5 @@ public class Truck extends Car {
         double totalLoad = this.load;
         this.load=0;
         return totalLoad;
-    }
-
-    public void accelerate(double amount) {
-        this.speed = this.speed + amount;
     }
 }

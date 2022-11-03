@@ -15,19 +15,12 @@ public class Bicycle extends Vehicle {
         this(initialSpeed, 2.0, 2.0);
     }
 
-    @Override
-    public void accelerate(double amount) {
-        if(amount < 0)
-            throw new AssertionError("amount must be greater than or equal to zero");
-        this.speed = this.speed + amount;
-    }
-    protected double accelerate(String s) {
+    protected void accelerate(String s) {
         this.accelerate(Double.valueOf(s));
-        return this.speed;
+        //return this.speed;
     }
 
 
-    private double speed;
     private double frontTire = 2.0, rearTire = 2.0;
     public double frontTirePressure() {
         return frontTire;

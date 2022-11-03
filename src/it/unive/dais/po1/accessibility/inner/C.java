@@ -4,6 +4,7 @@ import it.unive.dais.po1.accessibility.A;
 import it.unive.dais.po1.accessibility.B;
 
 public class C {
+
     public int public_f;
     int default_f;
     private int private_f;

@@ -5,7 +5,7 @@ abstract public class Vehicle {
     /**
      * @invariant this.speed >= 0
      */
-    protected double speed;
+    private double speed;
 
     public Vehicle(double initialSpeed) {
         if(initialSpeed>=0)
@@ -40,5 +40,17 @@ abstract public class Vehicle {
      It must be a value greater than or equal to zero.
 
      */
-    abstract protected void accelerate(double amount);
+    public void accelerate(double amount) {
+        if(amount < 0)
+            throw new AssertionError("amount must be greater than or equal to zero");
+        this.speed = this.speed + amount;
+    }
+
+    public void slowdown(double amount) {
+        if(amount < 0)
+            throw new AssertionError("amount must be greater than or equal to zero");
+        if(amount > this.speed)
+            throw new AssertionError("amount is greater than the current speed of the vehicle");
+        this.speed = this.speed - amount;
+    }
 }
