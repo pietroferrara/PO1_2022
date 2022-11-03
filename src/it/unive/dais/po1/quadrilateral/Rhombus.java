@@ -8,6 +8,7 @@ public class Rhombus extends Quadrilateral {
         this.height = height;
     }
 
+    @Override
     public int getArea() {
         return this.edge1 * this.height;
     }

@@ -1,8 +1,8 @@
 package it.unive.dais.po1.quadrilateral;
 
-public class Quadrilateral {
+abstract public class Quadrilateral {
 
-    int edge1, edge2, edge3, edge4;
+    protected int edge1, edge2, edge3, edge4;
 
 
     public Quadrilateral(int edge1, int edge2, int edge3, int edge4) {
@@ -12,11 +12,9 @@ public class Quadrilateral {
         this.edge4 = edge4;
     }
 
-    public int getArea() {
-        return -1;
-    }
+    abstract public int getArea();
 
-    public int getPerimeter() {
+    final public int getPerimeter() {
         return this.edge1 + this.edge2 + this.edge3 + this.edge4;
     }
 }

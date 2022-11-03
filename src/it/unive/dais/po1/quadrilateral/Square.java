@@ -1,17 +1,10 @@
 package it.unive.dais.po1.quadrilateral;
 
 
-public class Square extends Quadrilateral {
+public class Square extends Rectangle {
 
     public Square(int edgeLength) {
-        super(edgeLength, edgeLength, edgeLength, edgeLength);
+        super(edgeLength, edgeLength);
     }
 
-    public Square() {
-        this(1);
-    }
-
-    public int getArea() {
-        return this.edge1 * this.edge1;
-    }
 }

@@ -128,4 +128,8 @@ public class Car extends Vehicle {
         }
     }
 
+    public FuelType getFuelType() {
+        return this.fuelType;
+    }
+
 }
