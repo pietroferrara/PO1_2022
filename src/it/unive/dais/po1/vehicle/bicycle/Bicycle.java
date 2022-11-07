@@ -1,8 +1,10 @@
 package it.unive.dais.po1.vehicle.bicycle;
 
+import it.unive.dais.po1.printing.ErrorPrintable;
+import it.unive.dais.po1.printing.Printable;
 import it.unive.dais.po1.vehicle.Vehicle;
 
-public class Bicycle extends Vehicle {
+public class Bicycle extends Vehicle implements ErrorPrintable {
 
 
     public Bicycle(double initialSpeed, double frontPressure, double rearPressure) {
@@ -29,4 +31,13 @@ public class Bicycle extends Vehicle {
         return rearTire;
     }
 
+    @Override
+    public void print() {
+        System.out.println("I'm a bicycle");
+    }
+
+    @Override
+    public void printError() {
+        System.err.println("I'm a broken bicycle");
+    }
 }

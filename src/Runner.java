@@ -1,9 +1,13 @@
 import it.unive.dais.po1.accessibility.A;
+import it.unive.dais.po1.printing.Printable;
 import it.unive.dais.po1.quadrilateral.Quadrilateral;
 import it.unive.dais.po1.quadrilateral.Rectangle;
 import it.unive.dais.po1.quadrilateral.Rhombus;
 import it.unive.dais.po1.quadrilateral.Square;
+import it.unive.dais.po1.vehicle.Loadable;
 import it.unive.dais.po1.vehicle.Vehicle;
+import it.unive.dais.po1.vehicle.animalCarts.HorseCart;
+import it.unive.dais.po1.vehicle.animalCarts.HorseWeddingCart;
 import it.unive.dais.po1.vehicle.bicycle.Bicycle;
 import it.unive.dais.po1.vehicle.car.*;
 
@@ -14,14 +18,16 @@ public class Runner {
     public static int race(Vehicle v1, Vehicle v2, double length) {
         v1.brake();
         v2.brake();
-        if(v1 instanceof Car) {
-            Car c1 = (Car) v1;
-            c1.refuel(new FuelTank(10.0, c1.getFuelType()));
-        }
+        if(v1 instanceof Car)
+            ((Car) v1).refuel(new FuelTank(10.0, ((Car) v1).getFuelType()));
         if(v2 instanceof Car) {
             Car c2 = (Car) v2;
             c2.refuel(new FuelTank(10.0, c2.getFuelType()));
         }
+        if(v1 instanceof Loadable)
+            ((Loadable) v1).unload();
+        if(v2 instanceof Loadable)
+            ((Loadable) v2).unload();
 
         double v1_position = 0.0, v2_position = 0.0;
         while(v1_position < length && v2_position < length) {
@@ -42,17 +48,37 @@ public class Runner {
     public static void main(String[] args) {
 
         FuelType ft = new FuelType("diesel", 0.017, 1.7);
-        Vehicle myCar = new Car(0, ft, 0);
+        Car myCar = new Car(0, ft, 0);
         myCar.accelerate(10);
 
-        Vehicle myBicycle = new Bicycle(0);
+        Bicycle myBicycle = new Bicycle(0);
         myBicycle.accelerate(10);
         myBicycle.brake();
 
+        Vehicle myVehicle = myCar;
+
+
         Vehicle myTruck = new Truck(0.0, ft);
 
-        race(myTruck, myCar, 10);
+        Loadable l;
 
+        HorseCart myCart = new HorseCart(0, 10);
+
+        HorseWeddingCart hwc = new HorseWeddingCart(0, 0);
+        Loadable l1 = hwc;
+        printIfPossible(myCart);
+        printIfPossible(myBicycle);
+        printIfPossible(myCar);
+        printIfPossible(myTruck);
+        printIfPossible(myVehicle);
+        printIfPossible(hwc);
+        race(myTruck, myCart, 10);
+
+    }
+
+    private static void printIfPossible(Object o) {
+        if(o instanceof Printable)
+            ((Printable) o).print();
     }
 
     private static Quadrilateral giveMeARandomQuadrilateral() {

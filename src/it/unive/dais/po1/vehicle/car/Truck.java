@@ -1,5 +1,9 @@
 package it.unive.dais.po1.vehicle.car;
-final public class Truck extends Car {
+
+import it.unive.dais.po1.vehicle.Loadable;
+import it.unive.dais.po1.vehicle.UnloadableLoadable;
+
+final public class Truck extends Car implements UnloadableLoadable {
 
     private double load;
 
@@ -15,15 +19,14 @@ final public class Truck extends Car {
         this(initialSpeed, ft, 0.0);
     }
 
-
-        public void chargeLoad(double amount) {
-        if(amount >= 0)
-            this.load = this.load + amount;
+    @Override
+    public double getLoad() {
+        return this.load;
     }
 
-    public double unload() {
-        double totalLoad = this.load;
-        this.load=0;
-        return totalLoad;
+    @Override
+    public void setLoad(double d) {
+        this.load = d;
     }
+
 }
