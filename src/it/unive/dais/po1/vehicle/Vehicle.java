@@ -2,18 +2,27 @@ package it.unive.dais.po1.vehicle;
 
 abstract public class Vehicle {
 
+    private static int NumberOfVehicles = 1;
+
     /**
      * @invariant this.speed >= 0
      */
     private double speed;
+    private int id;
 
     public Vehicle(double initialSpeed) {
         if(initialSpeed>=0)
             this.speed = initialSpeed;
         else this.speed = 0;
+        this.id = Vehicle.NumberOfVehicles;
+        Vehicle.NumberOfVehicles++;
     }
 
 
+
+    public static int getNumberOfVehicles() {
+        return Vehicle.NumberOfVehicles;
+    }
     //It fully brakes the car
     public void brake() {
         speed = 0;

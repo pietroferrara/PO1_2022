@@ -69,6 +69,10 @@ public class Car extends Vehicle {
         }
     }
 
+    public static int getNumberOfVehicles() {
+        return -1;
+    }
+
     /**
      *
      It accelerates the car with the given speed
@@ -93,6 +97,7 @@ public class Car extends Vehicle {
         this.getSpeed() >= prev(this.getSpeed())
         AND this.getAmountOfFuel() <= prev(this.getAmountOfFuel())
      */
+    @Override
     final public void accelerate(double amount) {
         if(amount < 0)
             throw new AssertionError("amount must be greater than or equal to zero");
