@@ -1,13 +1,11 @@
 import it.unive.dais.po1.accessibility.A;
+import it.unive.dais.po1.datastructures.List;
 import it.unive.dais.po1.printing.Printable;
 import it.unive.dais.po1.quadrilateral.Quadrilateral;
 import it.unive.dais.po1.quadrilateral.Rectangle;
 import it.unive.dais.po1.quadrilateral.Rhombus;
 import it.unive.dais.po1.quadrilateral.Square;
-import it.unive.dais.po1.vehicle.Loadable;
-import it.unive.dais.po1.vehicle.Racing;
-import it.unive.dais.po1.vehicle.UnloadableLoadable;
-import it.unive.dais.po1.vehicle.Vehicle;
+import it.unive.dais.po1.vehicle.*;
 import it.unive.dais.po1.vehicle.animalCarts.HorseCart;
 import it.unive.dais.po1.vehicle.animalCarts.HorseWeddingCart;
 import it.unive.dais.po1.vehicle.bicycle.Bicycle;
@@ -26,18 +24,49 @@ public class Runner {
 
         Vehicle v1 = myCar1;
         Vehicle v2 = myCar2;
-        Racing race = new Racing(10.0);
 
-        race.race(myCar1, (Car) myTruck);
+        List<? extends Car> listCar = new List<>();
+        List<? extends Vehicle> list = listCar;
 
-        race.race((Vehicle) myCar1, myTruck);
+        Vehicle v = list.get(0);
 
-        race.race(v1, myTruck);
+
+        List<Car> listCar1 = new List<>();
+        List<Vehicle> list1 = listCar;
+
+
+        list.add(myCar2);
+        list.add(myTruck);
+
+        /*Car[] arrayCars = new Car[3];
+        arrayCars[0] = myCar1;
+        arrayCars[1] = myTruck;
+
+        Vehicle[] arrayVehicle = (Car[]) arrayCars;
+        arrayVehicle[2] = new Bicycle(0, 0, 0);
+        Car newCar = arrayCars[2];
+        */
+
+
+        RacingList<Vehicle> listrace = new RacingList<>(20);
+        System.out.println("The winner is "+listrace.race(listCar));
 
         System.out.println("Number of vehicles: "+v1.getNumberOfVehicles());
 
         System.out.println("Number of cars: "+myCar1.getNumberOfVehicles());
+
+        List t = new List<Car>();
+        t = new List<String>();
+
+        String s = Runner.identity("pippo");
+        Car car = Runner.identity(new Car(0, ft, 0));
     }
+
+    //template<typename T>
+    static <T> T identity(T par) {
+        return par;
+    }
+
 
     private static void printIfPossible(Object o) {
         if(o instanceof Printable)
