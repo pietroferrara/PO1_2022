@@ -62,10 +62,10 @@ public class Car extends Vehicle {
      {@link FuelTank}
      */
     public void refuel(FuelTank tank) {
-        if(tank.getFuelName().equals(fuelType.getFuelName()))
+        if(tank.getFuelType().equals(fuelType))
             this.fuel = this.fuel + tank.getAmount();
         else {
-            System.err.println("I cannot use "+tank.getFuelName()+" with a car with "+fuelType.getFuelName());
+            System.err.println("I cannot use "+tank.getFuelType()+" with a car with "+fuelType.getFuelName());
         }
     }
 

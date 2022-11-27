@@ -7,6 +7,11 @@ public class FuelTank {
 
     private static int numberOfTanks;
 
+    @Override
+    public String toString() {
+        return "Tank with " + amount + " liters of " + type;
+    }
+
     static final int MAX_NUMBER_OF_TANKS = 1000;
 
     public FuelTank(double amount, FuelType type) {
@@ -30,8 +35,8 @@ public class FuelTank {
         FuelTank.numberOfTanks = 0;
     }
 
-    public String getFuelName() {
-        return this.type.getFuelName();
+    public FuelType getFuelType() {
+        return this.type;
     }
 
     public double getAmount() {

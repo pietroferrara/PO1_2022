@@ -1,8 +1,37 @@
 package it.unive.dais.po1.vehicle;
 
-abstract public class Vehicle {
+import java.util.Objects;
+
+abstract public class Vehicle implements Comparable<Vehicle> {
 
     private static int NumberOfVehicles = 1;
+
+    @Override
+    public int compareTo(Vehicle o) {
+        if(this.equals(o))
+            return 0;
+        else if(this.speed!=o.speed)
+                return  ((int) (this.speed-o.speed));
+        else return this.id-o.id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Vehicle vehicle = (Vehicle) o;
+        return Double.compare(vehicle.speed, speed) == 0 && id == vehicle.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(speed, id);
+    }
+
+    @Override
+    public String toString() {
+        return "Vehicle with id " + id + " and with speed "+speed+"km/h";
+    }
 
     /**
      * @invariant this.speed >= 0
