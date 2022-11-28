@@ -1,5 +1,7 @@
 package it.unive.dais.po1.vehicle;
 
+import it.unive.dais.po1.vehicle.car.NotEnoughFuelException;
+
 import java.util.Objects;
 
 abstract public class Vehicle implements Comparable<Vehicle> {
@@ -78,9 +80,9 @@ abstract public class Vehicle implements Comparable<Vehicle> {
      It must be a value greater than or equal to zero.
 
      */
-    public void accelerate(double amount) {
+    public void accelerate(double amount) throws NegativeSpeedException, ImpossibleAccelerationException {
         if(amount < 0)
-            throw new AssertionError("amount must be greater than or equal to zero");
+            throw new NegativeSpeedException("amount must be greater than or equal to zero");
         this.speed = this.speed + amount;
     }
 

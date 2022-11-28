@@ -2,6 +2,8 @@ package it.unive.dais.po1.vehicle.bicycle;
 
 import it.unive.dais.po1.printing.ErrorPrintable;
 import it.unive.dais.po1.printing.Printable;
+import it.unive.dais.po1.vehicle.ImpossibleAccelerationException;
+import it.unive.dais.po1.vehicle.NegativeSpeedException;
 import it.unive.dais.po1.vehicle.Vehicle;
 
 public class Bicycle extends Vehicle implements ErrorPrintable {
@@ -17,7 +19,7 @@ public class Bicycle extends Vehicle implements ErrorPrintable {
         this(initialSpeed, 2.0, 2.0);
     }
 
-    protected void accelerate(String s) {
+    protected void accelerate(String s) throws NegativeSpeedException, ImpossibleAccelerationException {
         this.accelerate(Double.valueOf(s));
         //return this.speed;
     }

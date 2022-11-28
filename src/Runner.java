@@ -28,7 +28,7 @@ public class Runner {
         float f = (float) 2.3;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NegativeSpeedException, ImpossibleAccelerationException {
         String s = "abc";
         String s1 = s + "def";
 
@@ -46,7 +46,9 @@ public class Runner {
         String s3 = tank.toString();
         myCar1.refuel(tank);
 
-        boolean result = ft.equals(null);
+        myCar1.accelerate(100000);
+
+        /*boolean result = ft.equals(null);
 
 
         Object[] o = new Object[4];
@@ -74,34 +76,25 @@ public class Runner {
         float i = 2.0F;
         byte g = 1;
         short h = 12;
+        e = (char) d;
+        i = (float) f;
         d = h;
         f = i;
-/*
-        Vehicle[] arrayVehicle = (Car[]) arrayCars;
-        arrayVehicle[2] = new Bicycle(0, 0, 0);
-        Car newCar = arrayCars[2];
-        */
+
+        int[] array_int = new int[10];
+        ArrayList<Integer> list_integer_wrapper = new ArrayList<Integer>();
+        Integer wi = Integer.valueOf(10), wi2 = 12;
+        Double wd = Double.valueOf(10);
+        wi.byteValue();
+
+        wi = wi+wi2;*/
 
     }
 
-    //template<typename T>
-    static <T> T identity(T par) {
-        return par;
+    public static int fattoriale(int i) {
+        if(i<= 0)
+            return 1;
+        else return i * fattoriale(i-1);
     }
 
-
-    private static void printIfPossible(Object o) {
-        if(o instanceof Printable)
-            ((Printable) o).print();
-    }
-
-    private static Quadrilateral giveMeARandomQuadrilateral() {
-        if(Math.random()>=0.5)
-            return new Square((int)(Math.random()*10.0));
-        else if(Math.random()>=0.5)
-            return new Rectangle((int)(Math.random()*10.0), (int)(Math.random()*10.0));
-        else return new Rhombus((int)(Math.random()*10.0), (int)(Math.random()*10.0));
-
-
-    }
 }

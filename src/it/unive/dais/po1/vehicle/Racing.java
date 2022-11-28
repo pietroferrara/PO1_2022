@@ -13,7 +13,7 @@ public class Racing {
 
 
     //Returns 1 if v1 wins, 2 if w2 wins, 0 otherwise
-    public int race(Vehicle v1, Vehicle v2) {
+    public int race(Vehicle v1, Vehicle v2) throws NegativeSpeedException, ImpossibleAccelerationException {
         v1.brake();
         v2.brake();
         if(v1 instanceof Car)

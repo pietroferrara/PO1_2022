@@ -1,5 +1,7 @@
 package it.unive.dais.po1.vehicle.car;
 
+import it.unive.dais.po1.vehicle.ImpossibleAccelerationException;
+import it.unive.dais.po1.vehicle.NegativeSpeedException;
 import it.unive.dais.po1.vehicle.Vehicle;
 
 /**
@@ -81,6 +83,10 @@ public class Car extends Vehicle {
 
      @param amount the number of km/h we want to accelerate.
                 It must be a value greater than or equal to zero.
+     @throws NegativeSpeedException
+                if the given amount is less than zero
+     @throws NotEnoughFuelException
+                if the fuel is not enough to finalize the acceleration
      @precondition/@requires amount >= 0
 
      TOO LONG VERSION
@@ -98,19 +104,20 @@ public class Car extends Vehicle {
         AND this.getAmountOfFuel() <= prev(this.getAmountOfFuel())
      */
     @Override
-    final public void accelerate(double amount) {
-        if(amount < 0)
-            throw new AssertionError("amount must be greater than or equal to zero");
+    final public void accelerate(double amount)
+            throws NegativeSpeedException, ImpossibleAccelerationException {
         double consumption = amount*fuelType.FUEL_CONSUMPTION;
         if(consumption <= this.fuel) {
             super.accelerate(amount);
             fuel = fuel - consumption * fuelType.FUEL_CONSUMPTION;
         }
-        else {
+        else
+            throw new NotEnoughFuelException("You needed "+consumption+" lt of fuel but you had only "+this.fuel);
+        /*{
             consumption = this.fuel;
             this.fuel = 0;
             super.accelerate(consumption/fuelType.FUEL_CONSUMPTION);
-        }
+        }*/
     }
 
     /**
@@ -118,12 +125,12 @@ public class Car extends Vehicle {
      * The result is that car {@literal c} stops, while the current car gets the speed of the other car
      * @param c the car that is crashing against the current one
      */
-    public void crash(Car c) {
+    public void crash(Car c) throws NegativeSpeedException, ImpossibleAccelerationException {
         super.accelerate(c.getSpeed());
         c.brake();
     }
 
-    public boolean isFuelEmpty() {
+    public boolean isFuelEmpty() throws NegativeSpeedException, ImpossibleAccelerationException {
         if(fuel>0)
             return false;
         else {
