@@ -81,6 +81,7 @@ abstract public class Vehicle implements Comparable<Vehicle> {
 
      */
     public void accelerate(double amount) throws NegativeSpeedException, ImpossibleAccelerationException {
+        assert amount >= 0;
         if(amount < 0)
             throw new NegativeSpeedException("amount must be greater than or equal to zero");
         this.speed = this.speed + amount;

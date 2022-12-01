@@ -1,4 +1,5 @@
 import it.unive.dais.po1.accessibility.A;
+import it.unive.dais.po1.accessibility.B;
 import it.unive.dais.po1.datastructures.List;
 import it.unive.dais.po1.printing.Printable;
 import it.unive.dais.po1.quadrilateral.Quadrilateral;
@@ -11,6 +12,10 @@ import it.unive.dais.po1.vehicle.animalCarts.HorseWeddingCart;
 import it.unive.dais.po1.vehicle.bicycle.Bicycle;
 import it.unive.dais.po1.vehicle.car.*;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
 
 public class Runner {
@@ -28,7 +33,7 @@ public class Runner {
         float f = (float) 2.3;
     }
 
-    public static void main(String[] args) throws NegativeSpeedException, ImpossibleAccelerationException {
+    public static void main(String[] args) throws NegativeSpeedException, ImpossibleAccelerationException, IOException, SuspendedRaceException {
         String s = "abc";
         String s1 = s + "def";
 
@@ -46,7 +51,19 @@ public class Runner {
         String s3 = tank.toString();
         myCar1.refuel(tank);
 
-        myCar1.accelerate(100000);
+        myCar1.accelerate(-10);
+
+        Racing r = new Racing(100);
+        int winner = r.race(myCar1, myTruck);
+        System.out.println("And the winner is : "+winner);
+
+
+        try(FileReader file = new FileReader("pippo.txt");
+            BufferedReader reader = new BufferedReader(file))
+        {
+            String input = reader.readLine();
+            Integer i = Integer.parseInt(input);
+        }
 
         /*boolean result = ft.equals(null);
 

@@ -14,7 +14,7 @@ public class RacingList<T extends Vehicle> {
 
 
     //Returns 1 if v1 wins, 2 if w2 wins, 0 otherwise
-    public int race(List<? extends Vehicle> v) throws NegativeSpeedException, ImpossibleAccelerationException {
+    public int race(List<? extends Vehicle> v) throws ImpossibleAccelerationException {
         for(int i = 0; i < v.size(); i++)
             v.get(i).brake();
         for(int i = 0; i < v.size(); i++)
@@ -31,7 +31,15 @@ public class RacingList<T extends Vehicle> {
         while(noVehicleAtTheEnd(positions)) {
             double amount_acceleration = 10*Math.random();
             int vToBeAccelerate = (int) (Math.random()*v.size());
-            v.get(vToBeAccelerate).accelerate(amount_acceleration);
+            try {
+                v.get(vToBeAccelerate).accelerate(amount_acceleration);
+            } catch (NegativeSpeedException e) {
+                try {
+                    v.get(vToBeAccelerate).accelerate(0.0 - amount_acceleration);
+                } catch (NegativeSpeedException ex) {
+                    throw new IllegalArgumentException("0 minus a negative value results in a negative value");
+                }
+            }
             for(int i = 0; i < v.size(); i++)
                 positions.replace(i,positions.get(i)+v.get(i).getSpeed());
         }
