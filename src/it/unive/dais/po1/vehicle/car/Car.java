@@ -71,6 +71,12 @@ public class Car extends Vehicle {
         }
     }
 
+    @Deprecated(forRemoval = true)
+    public void refuel(double amount) {
+        assert amount >= 0.0;
+        this.fuel += amount;
+    }
+
     public static int getNumberOfVehicles() {
         return -1;
     }

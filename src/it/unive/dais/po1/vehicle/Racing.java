@@ -17,12 +17,12 @@ public class Racing {
         try {
             v1.brake();
             v2.brake();
-            /*if (v1 instanceof Car)
+            if (v1 instanceof Car)
                 ((Car) v1).refuel(new FuelTank(10.0, ((Car) v1).getFuelType()));
             if (v2 instanceof Car) {
                 Car c2 = (Car) v2;
                 c2.refuel(new FuelTank(10.0, c2.getFuelType()));
-            }*/
+            }
             if (v1 instanceof UnloadableLoadable)
                 ((UnloadableLoadable) v1).unload();
             if (v2 instanceof UnloadableLoadable)

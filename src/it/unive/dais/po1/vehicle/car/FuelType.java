@@ -1,17 +1,32 @@
 package it.unive.dais.po1.vehicle.car;
 
+import jakarta.xml.bind.annotation.XmlAttribute;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlType;
+
 import java.util.Objects;
 
+@XmlRootElement
+@XmlType
 public class FuelType {
-    final double FUEL_CONSUMPTION;
-    private final String name;
+
+    @XmlElement
+    double FUEL_CONSUMPTION;
+
+    @XmlAttribute
+    private String name;
 
     @Override
     public String toString() {
         return "Fuel:" + name + " consuming " + FUEL_CONSUMPTION + " costing "+costPerLiter;
     }
 
-    private final double costPerLiter;
+    @XmlElement
+    private double costPerLiter;
+
+
+    public FuelType() {}
 
     public FuelType(String name, double FUEL_CONSUMPTION, double costPerLiter) {
         this.name = name;

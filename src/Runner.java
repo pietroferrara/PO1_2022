@@ -11,11 +11,11 @@ import it.unive.dais.po1.vehicle.animalCarts.HorseCart;
 import it.unive.dais.po1.vehicle.animalCarts.HorseWeddingCart;
 import it.unive.dais.po1.vehicle.bicycle.Bicycle;
 import it.unive.dais.po1.vehicle.car.*;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Marshaller;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 public class Runner {
@@ -33,15 +33,17 @@ public class Runner {
         float f = (float) 2.3;
     }
 
-    public static void main(String[] args) throws NegativeSpeedException, ImpossibleAccelerationException, IOException, SuspendedRaceException {
+    public static void main(String[] args) throws NegativeSpeedException, ImpossibleAccelerationException, IOException, SuspendedRaceException, JAXBException {
         String s = "abc";
         String s1 = s + "def";
 
         FuelType ft = new FuelType("diesel", 0.017, 1.7);
-        FuelType ft1 = new FuelType("diesel", 0.017, 1.7);
+        FuelType ft1 = new FuelType("diesel", 0.017, 1.9);
         Car myCar1 = new Car(0, ft, 0);
         Car myCar2 = new Car(0, ft, 0);
         Truck myTruck = new Truck(0, ft, 0);
+
+
 
         Vehicle v1 = myCar1;
         Vehicle v2 = myCar2;
@@ -51,19 +53,18 @@ public class Runner {
         String s3 = tank.toString();
         myCar1.refuel(tank);
 
-        myCar1.accelerate(-10);
 
         Racing r = new Racing(100);
         int winner = r.race(myCar1, myTruck);
         System.out.println("And the winner is : "+winner);
 
+        myCar1.refuel(10.0);
 
-        try(FileReader file = new FileReader("pippo.txt");
-            BufferedReader reader = new BufferedReader(file))
-        {
-            String input = reader.readLine();
-            Integer i = Integer.parseInt(input);
-        }
+        Runner.marshal(ft);
+
+        Integer i = new Integer(10);
+
+        FuelType ft2 = Runner.unmarshall();
 
         /*boolean result = ft.equals(null);
 
@@ -112,6 +113,21 @@ public class Runner {
         if(i<= 0)
             return 1;
         else return i * fattoriale(i-1);
+    }
+
+    static void marshal(FuelType fuelType)
+            throws JAXBException {
+        JAXBContext context = JAXBContext.newInstance(FuelType.class);
+        Marshaller mar= context.createMarshaller();
+        mar.marshal(fuelType, new File("./fuelType.xml"));
+    }
+
+
+    static FuelType unmarshall()
+            throws JAXBException, IOException {
+        JAXBContext context = JAXBContext.newInstance(FuelType.class);
+        return (FuelType) context.createUnmarshaller()
+                .unmarshal(new FileReader("./fuelType.xml"));
     }
 
 }

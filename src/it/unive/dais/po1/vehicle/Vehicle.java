@@ -38,10 +38,11 @@ abstract public class Vehicle implements Comparable<Vehicle> {
     /**
      * @invariant this.speed >= 0
      */
+    @Speed(forward = true)
     private double speed;
     private int id;
 
-    public Vehicle(double initialSpeed) {
+    public Vehicle(@Speed(forward=true) double initialSpeed) {
         if(initialSpeed>=0)
             this.speed = initialSpeed;
         else this.speed = 0;
@@ -51,6 +52,7 @@ abstract public class Vehicle implements Comparable<Vehicle> {
 
 
 
+    //@SuppressWarnings({"unused","all","pippo","pluto"})
     public static int getNumberOfVehicles() {
         return Vehicle.NumberOfVehicles;
     }
@@ -65,7 +67,7 @@ abstract public class Vehicle implements Comparable<Vehicle> {
      * @return the current speed of the
      * @postcondition return >= 0
      */
-    public double getSpeed() {
+    public @Speed(forward=true)  double getSpeed() {
         return this.speed;
     }
 
@@ -80,18 +82,21 @@ abstract public class Vehicle implements Comparable<Vehicle> {
      It must be a value greater than or equal to zero.
 
      */
-    public void accelerate(double amount) throws NegativeSpeedException, ImpossibleAccelerationException {
+    public void accelerate(@Speed(forward=true) double amount) throws NegativeSpeedException, ImpossibleAccelerationException {
         assert amount >= 0;
         if(amount < 0)
             throw new NegativeSpeedException("amount must be greater than or equal to zero");
         this.speed = this.speed + amount;
     }
 
-    public void slowdown(double amount) {
+    public void slowdown(@Speed(forward=false) double amount) {
         if(amount < 0)
             throw new AssertionError("amount must be greater than or equal to zero");
         if(amount > this.speed)
             throw new AssertionError("amount is greater than the current speed of the vehicle");
         this.speed = this.speed - amount;
     }
+
+
+
 }
