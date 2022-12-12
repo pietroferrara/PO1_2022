@@ -14,7 +14,7 @@ public class RacingList<T extends Vehicle> {
 
 
     //Returns 1 if v1 wins, 2 if w2 wins, 0 otherwise
-    public int race(List<? extends Vehicle> v) throws ImpossibleAccelerationException {
+    public int race(List<Vehicle> v) throws ImpossibleAccelerationException {
         for(int i = 0; i < v.size(); i++)
             v.get(i).brake();
         for(int i = 0; i < v.size(); i++)

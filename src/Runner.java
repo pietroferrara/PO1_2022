@@ -16,6 +16,11 @@ import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
 
 import java.io.*;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.*;
 
 public class Runner {
@@ -33,7 +38,7 @@ public class Runner {
         float f = (float) 2.3;
     }
 
-    public static void main(String[] args) throws NegativeSpeedException, ImpossibleAccelerationException, IOException, SuspendedRaceException, JAXBException {
+    public static void main(String[] args) throws IOException, SuspendedRaceException, JAXBException, IllegalAccessException, InvocationTargetException, InstantiationException {
         String s = "abc";
         String s1 = s + "def";
 
@@ -66,46 +71,16 @@ public class Runner {
 
         FuelType ft2 = Runner.unmarshall();
 
-        /*boolean result = ft.equals(null);
 
+        Class c = Vehicle.class;
+        for(Field f : c.getDeclaredFields()) {
+            if(f.getName().equals("speed")) {
+                Annotation[] anns = f.getAnnotations();
+                Speed annotation = (Speed) f.getAnnotation(Speed.class);
+                System.out.println(anns.length);
+            }
+        }
 
-        Object[] o = new Object[4];
-        o[1] = v1;
-        o[2] = myCar2;
-        o[3] = new Object();
-        o[0] = new String("abc");
-
-
-        Car[] arrayCars = new Car[3];
-        arrayCars[0] = myCar1;
-        arrayCars[1] = myTruck;
-
-        Collection<Vehicle> it = new HashSet<Vehicle>();
-        it.add(arrayCars[0]);
-        it.add(arrayCars[1]);
-        it.add(new Car(100, ft1));
-        foo(it);
-
-
-        boolean b = true, c = false;
-        int d = 1;
-        char e = 'a';
-        double f = 1.0;
-        float i = 2.0F;
-        byte g = 1;
-        short h = 12;
-        e = (char) d;
-        i = (float) f;
-        d = h;
-        f = i;
-
-        int[] array_int = new int[10];
-        ArrayList<Integer> list_integer_wrapper = new ArrayList<Integer>();
-        Integer wi = Integer.valueOf(10), wi2 = 12;
-        Double wd = Double.valueOf(10);
-        wi.byteValue();
-
-        wi = wi+wi2;*/
 
     }
 

@@ -18,7 +18,7 @@ public class Car extends Vehicle {
     /**
      * It represents the fuel type of the car
      */
-    private FuelType fuelType;
+    private final FuelType fuelType;
     /**
      * @invariant this.fuel >= 0
      */
